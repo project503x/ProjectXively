@@ -4,7 +4,9 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ProjectXively</title>
+    
+    <!-- design template -->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
     
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,6 +19,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Include XivelyJS -->
     <script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script>
+    
+    <title>ProjectXively</title>
   
   </head>
   <body>
@@ -28,6 +32,13 @@
 
           <h1 id="project_title">ProjectXively</h1>
           <h2 id="project_tagline">Xively</h2>
+          
+          <h3><small>Person: </small> <span id="title"></span></h3>
+          <h3><small>Assembly Area: </small> <span id="assemblyarea"></span></h3>
+          <h3><small>Medical Dispensary: </small> <span id="medicaldispensary"></span></h3>
+          <h3><small>Reception Office: </small> <span id="receptionoffice"></span></h3>
+          <h3><small>Sleeping Quarter: </small> <span id="sleepingquarter"></span></h3>
+          
         </header>
     </div>
 
@@ -46,5 +57,8 @@
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
+    <script src="javascripts/scale.fix.js"></script>
+    <!-- the main script, where the magic happens -->
+    <script src="javascripts/retrieveinfo.js"></script>
   </body>
 </html>
