@@ -8,55 +8,75 @@ $(document).ready(function($) {
   // Replace with your own values
   var feedA        = 1260369820;        // Feed ID (the last number on the URL on the feed page on Xively)
       feedB        = 483265714;
-      
-  xively.feed.get (feedID, function (data) {
-    // Display the value from the datastream
+  
+  // feedA
+  xively.feed.get (feedA, function (data) {
     $("#title").html( data["title"] );
-    // The function associated with the subscribe method will be executed
-    // every time there is an update to the datastream
-    xively.feed.subscribe( feedID, function ( event , feed_updated ) {
-      // Display the value from the updated datastream
+    xively.feed.subscribe( feedA, function ( event , feed_updated ) {
       $("#title").html( feed_updated["title"] );
     });
   });
   
-  // Get datastream data from Xively
-  xively.datastream.get (feedID, "AssemblyArea", function (datastream) {
+  xively.datastream.get (feedA, "AssemblyArea", function (datastream) {
     $("#assemblyarea").html( datastream["current_value"] );
-    // The function associated with the subscribe method will be executed
-    // every time there is an update to the datastream
-    xively.datastream.subscribe( feedID, "AssemblyArea", function ( event , datastream_updated ) {
-      // Display the value from the updated datastream
+    xively.datastream.subscribe( feedA, "AssemblyArea", function ( event , datastream_updated ) {
       $("#assemblyarea").html( datastream_updated["current_value"] );
     });
   });
   
-  xively.datastream.get (feedID, "MedicalDispensary", function (datastream) {
+  xively.datastream.get (feedA, "MedicalDispensary", function (datastream) {
     $("#medicaldispensary").html( datastream["current_value"] );
-    // The function associated with the subscribe method will be executed
-    // every time there is an update to the datastream
-    xively.datastream.subscribe( feedID, "MedicalDispensary", function ( event , datastream_updated ) {
-      // Display the value from the updated datastream
+    xively.datastream.subscribe( feedA, "MedicalDispensary", function ( event , datastream_updated ) {
       $("#medicaldispensary").html( datastream_updated["current_value"] );
     });
   });
   
-  xively.datastream.get (feedID, "ReceptionOffice", function (datastream) {
+  xively.datastream.get (feedA, "ReceptionOffice", function (datastream) {
     $("#receptionoffice").html( datastream["current_value"] );
-    // The function associated with the subscribe method will be executed
-    // every time there is an update to the datastream
-    xively.datastream.subscribe( feedID, "ReceptionOffice", function ( event , datastream_updated ) {
-      // Display the value from the updated datastream
+    xively.datastream.subscribe( feedA, "ReceptionOffice", function ( event , datastream_updated ) {
       $("#receptionoffice").html( datastream_updated["current_value"] );
     });
   });
 
-  xively.datastream.get (feedID, "SleepingQuarter", function (datastream) {
+  xively.datastream.get (feedA, "SleepingQuarter", function (datastream) {
     $("#sleepingquarter").html( datastream["current_value"] );
-    // The function associated with the subscribe method will be executed
-    // every time there is an update to the datastream
-    xively.datastream.subscribe( feedID, "SleepingQuarter", function ( event , datastream_updated ) {
-      // Display the value from the updated datastream
+    xively.datastream.subscribe( feedA, "SleepingQuarter", function ( event , datastream_updated ) {
+      $("#sleepingquarter").html( datastream_updated["current_value"] );
+    });
+  });
+  
+  // feedB
+  xively.feed.get (feedB, function (data) {
+    $("#title").html( data["title"] );
+    xively.feed.subscribe( feedB, function ( event , feed_updated ) {
+      $("#title").html( feed_updated["title"] );
+    });
+  });
+  
+  xively.datastream.get (feedB, "AssemblyArea", function (datastream) {
+    $("#assemblyarea").html( datastream["current_value"] );
+    xively.datastream.subscribe( feedB, "AssemblyArea", function ( event , datastream_updated ) {
+      $("#assemblyarea").html( datastream_updated["current_value"] );
+    });
+  });
+  
+  xively.datastream.get (feedB, "MedicalDispensary", function (datastream) {
+    $("#medicaldispensary").html( datastream["current_value"] );
+    xively.datastream.subscribe( feedB, "MedicalDispensary", function ( event , datastream_updated ) {
+      $("#medicaldispensary").html( datastream_updated["current_value"] );
+    });
+  });
+  
+  xively.datastream.get (feedB, "ReceptionOffice", function (datastream) {
+    $("#receptionoffice").html( datastream["current_value"] );
+    xively.datastream.subscribe( feedB, "ReceptionOffice", function ( event , datastream_updated ) {
+      $("#receptionoffice").html( datastream_updated["current_value"] );
+    });
+  });
+
+  xively.datastream.get (feedB, "SleepingQuarter", function (datastream) {
+    $("#sleepingquarter").html( datastream["current_value"] );
+    xively.datastream.subscribe( feedB, "SleepingQuarter", function ( event , datastream_updated ) {
       $("#sleepingquarter").html( datastream_updated["current_value"] );
     });
   });
