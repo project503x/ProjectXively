@@ -7,7 +7,7 @@ $(document).ready(function($) {
   
   // Replace with your own values
   var feedA        = 1260369820;        // Feed ID (the last number on the URL on the feed page on Xively)
-      feedB        = 483265714;
+      //feedB        = 483265714;
   
   // feedA
   xively.feed.get (feedA, function (data) {
@@ -46,6 +46,7 @@ $(document).ready(function($) {
   });
   
   // feedB
+  /*
   xively.feed.get (feedB, function (data) {
     $("#titleB").html( data["title"] );
     xively.feed.subscribe( feedB, function ( event , feed_updated ) {
@@ -80,6 +81,7 @@ $(document).ready(function($) {
       $("#sleepingquarterB").html( datastream_updated["current_value"] );
     });
   });
+  */
   
   // WARNING: Code here will continue executing while we get the datastream data from Xively,
   // use the function associated with datastream.get to work with the data
