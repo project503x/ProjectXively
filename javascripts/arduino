@@ -1,0 +1,170 @@
+// include the library code:
+#include <SPI.h>
+#include <WiFi.h>
+#include <HttpClient.h>
+#include <Xively.h>
+
+char ssid[] = "iPhone"; // network SSID (name)
+char pass[] = "1234567890"; // network password
+int keyIndex = 0; // network key Index number (needed only for WEP)
+int status = WL_IDLE_STATUS;
+
+// your Xively key for data upload
+char xivelyKeyA[] = "th265Dt33mUj3ALeoVd5tbW9gRyZIM1m1aOliJ2QDD3SGI5b";
+char xivelyKeyB[] = "m859UhUI1Rv8VLFw4c3o2KTDHQZllBMgyNQNCMOIquMTtoPO";
+
+const int ID1 = 3; // person A
+const int ID2 = 4; // person B
+const int ID3 = 5; // and so on ...
+const int ID4 = 6;
+const int ID5 = 7;
+
+// define strings for datastreams
+String AssemblyID("AssemblyArea");
+String DispensaryID("MedicalDispensary");
+String OfficeID("ReceptionOffice");
+String QuarterID("SleepingQuarter");
+
+// define datastreams
+XivelyDatastream datastreams[] = {
+  XivelyDatastream(AssemblyID, DATASTREAM_STRING),
+  XivelyDatastream(DispensaryID, DATASTREAM_STRING),
+  XivelyDatastream(OfficeID, DATASTREAM_STRING),
+  XivelyDatastream(QuarterID, DATASTREAM_STRING),
+};
+
+// finally, wrap the datastreams into a feed
+XivelyFeed feedA(1260369820, datastreams, 4);
+XivelyFeed feedB(483265714, datastreams, 4);
+WiFiClient client;
+XivelyClient xivelyclient(client);
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+  
+  // print your WiFi shield's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+  
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
+}
+
+void setup() {
+  Serial.begin(9600);
+  
+  Serial.println("Starting multiple datastream upload to Xively...");
+  Serial.println();
+  
+  // attempt to connect to WiFi network:
+  while ( status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to SSID: ");
+    Serial.println(ssid);
+    status = WiFi.begin(ssid, pass);
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+  Serial.println("Connected to wifi");
+  printWifiStatus();
+  delay(500);
+  
+  initializeXivelyMessage();
+}
+
+void initializeXivelyMessage() {
+  Serial.println("Initialize the message in Xively");
+  
+  String firststringValue("0. Not Here");
+  datastreams[0].setString(firststringValue);
+  Serial.println(datastreams[0].getString());
+  
+  String secondstringValue("1. Not Here");
+  datastreams[1].setString(secondstringValue);
+  Serial.println(datastreams[1].getString());
+  
+  String thirdstringValue("2. Not Here");
+  datastreams[2].setString(thirdstringValue);
+  Serial.println(datastreams[2].getString());
+  
+  String fourthstringValue("3. Not Here");
+  datastreams[3].setString(fourthstringValue);
+  Serial.println(datastreams[3].getString());
+  
+  int ret;
+  ret = xivelyclient.put(feedA, xivelyKeyA);
+  ret = xivelyclient.put(feedB, xivelyKeyB);
+  Serial.print("xivelyclient.put returned ");
+  Serial.println(ret);  
+}
+
+void loop() {
+  int n = 0; // identify the location of this reader
+  /*  n=0 Assembly Area
+      n=1 Medical Dispensary
+      n=2 Reception Office
+      n=3 Sleeping Quarter */
+  
+  int A, B;
+  /*  Person A = Bruce Li
+      Person B = ?
+      Person C = ... and so on */
+  
+  Serial.println("Identification Status: 0:Absent 1:Scanned");
+  // get data identity from NFC
+  A = digitalRead(ID1); Serial.println(A);
+  B = digitalRead(ID2); Serial.println(B);
+  
+  // if person is A proceed to update location status
+  if (A == 1) {
+    String stringValue(n);
+    stringValue += ". HERE";
+    datastreams[n].setString(stringValue);
+    Serial.print("Setting string value to: \n");
+    Serial.println(datastreams[n].getString());
+    Serial.print("Uploading it to Xively for A, status = ");
+    int ret = xivelyclient.put(feedA, xivelyKeyA);
+    Serial.println(ret);
+  }
+  else {
+    String stringValue(n);
+    stringValue += ". NOT HERE";
+    datastreams[n].setString(stringValue);
+    Serial.print("Setting string value to: \n");
+    Serial.println(datastreams[n].getString());
+    Serial.print("Uploading it to Xively for A, status = ");
+    int ret = xivelyclient.put(feedA, xivelyKeyA);
+    Serial.println(ret);
+  }
+  
+  // if person is B proceed to update location status
+  if (B == 1) {
+    String stringValue(n);
+    stringValue += ". HERE";
+    datastreams[n].setString(stringValue);
+    Serial.print("Setting string value to: \n");
+    Serial.println(datastreams[n].getString());
+    Serial.print("Uploading it to Xively for B, status = ");
+    int ret = xivelyclient.put(feedB, xivelyKeyB);
+    Serial.println(ret);
+  }
+  else {
+    String stringValue(n);
+    stringValue += ". NOT HERE";
+    datastreams[n].setString(stringValue);
+    Serial.print("Setting string value to: \n");
+    Serial.println(datastreams[n].getString());
+    Serial.print("Uploading it to Xively for B, status = ");
+    int ret = xivelyclient.put(feedB, xivelyKeyB);
+    Serial.println(ret);
+  }
+  // more person identification can be added here
+  
+  Serial.println();
+  delay(1000);
+}
