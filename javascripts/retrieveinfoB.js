@@ -9,35 +9,35 @@ $(document).ready(function($) {
   
   xively.feed.get (feedA, function (data) {
     $("#titleB").html( data["title"] );
-    xively.feed.subscribe( feedA, function ( event , feed_updated ) {
+    xively.feed.subscribe( feedB, function ( event , feed_updated ) {
       $("#titleB").html( feed_updated["title"] );
     });
   });
   
   xively.datastream.get (feedB, "AssemblyArea", function (datastream) {
     $("#assemblyareaB").html( datastream["current_value"] );
-    xively.datastream.subscribe( feedA, "AssemblyArea", function ( event , datastream_updated ) {
+    xively.datastream.subscribe( feedB, "AssemblyArea", function ( event , datastream_updated ) {
       $("#assemblyareaB").html( datastream_updated["current_value"] );
     });
   });
   
   xively.datastream.get (feedB, "MedicalDispensary", function (datastream) {
     $("#medicaldispensaryB").html( datastream["current_value"] );
-    xively.datastream.subscribe( feedA, "MedicalDispensary", function ( event , datastream_updated ) {
+    xively.datastream.subscribe( feedB, "MedicalDispensary", function ( event , datastream_updated ) {
       $("#medicaldispensaryB").html( datastream_updated["current_value"] );
     });
   });
   
   xively.datastream.get (feedB, "ReceptionOffice", function (datastream) {
     $("#receptionofficeB").html( datastream["current_value"] );
-    xively.datastream.subscribe( feedA, "ReceptionOffice", function ( event , datastream_updated ) {
+    xively.datastream.subscribe( feedB, "ReceptionOffice", function ( event , datastream_updated ) {
       $("#receptionofficeB").html( datastream_updated["current_value"] );
     });
   });
 
   xively.datastream.get (feedB, "SleepingQuarter", function (datastream) {
     $("#sleepingquarterB").html( datastream["current_value"] );
-    xively.datastream.subscribe( feedA, "SleepingQuarter", function ( event , datastream_updated ) {
+    xively.datastream.subscribe( feedB, "SleepingQuarter", function ( event , datastream_updated ) {
       $("#sleepingquarterB").html( datastream_updated["current_value"] );
     });
   });
