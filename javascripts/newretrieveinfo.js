@@ -2,7 +2,7 @@
 $(document).ready(function($) {
 
   // Set the Xively API key (https://xively.com/users/YOUR_USERNAME/keys)
-  xively.setKeyA( "A4lGfHsBnd3sTzbltW9J6SgkHH4pzcQxlf7zGAo1qxlS1Wkc" );
+  xively.setKey( "A4lGfHsBnd3sTzbltW9J6SgkHH4pzcQxlf7zGAo1qxlS1Wkc" );
   //xively.setKeyB( "rQ6YvuNELKLR8Wj0RkblfS3UwM7Q5Vf35d5Ond6I34FKabEk" );
   
   // Replace with your own values
