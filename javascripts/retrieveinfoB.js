@@ -7,7 +7,7 @@ $(document).ready(function($) {
   // Replace with your own values
   var feedB        = 483265714;        // Feed ID (the last number on the URL on the feed page on Xively)
   
-  xively.feed.get (feedA, function (data) {
+  xively.feed.get (feedB, function (data) {
     $("#titleB").html( data["title"] );
     xively.feed.subscribe( feedB, function ( event , feed_updated ) {
       $("#titleB").html( feed_updated["title"] );
