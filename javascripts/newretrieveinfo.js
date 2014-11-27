@@ -11,73 +11,73 @@ $(document).ready(function($) {
   
   // feedA
   xively.feed.get (feedA, function (data) {
-    $("#title").html( data["title"] );
+    $("#titleA").html( data["title"] );
     xively.feed.subscribe( feedA, function ( event , feed_updated ) {
-      $("#title").html( feed_updated["title"] );
+      $("#titleA").html( feed_updated["title"] );
     });
   });
   
   xively.datastream.get (feedA, "AssemblyArea", function (datastream) {
-    $("#assemblyarea").html( datastream["current_value"] );
+    $("#assemblyareaA").html( datastream["current_value"] );
     xively.datastream.subscribe( feedA, "AssemblyArea", function ( event , datastream_updated ) {
-      $("#assemblyarea").html( datastream_updated["current_value"] );
+      $("#assemblyareaA").html( datastream_updated["current_value"] );
     });
   });
   
   xively.datastream.get (feedA, "MedicalDispensary", function (datastream) {
-    $("#medicaldispensary").html( datastream["current_value"] );
+    $("#medicaldispensaryA").html( datastream["current_value"] );
     xively.datastream.subscribe( feedA, "MedicalDispensary", function ( event , datastream_updated ) {
-      $("#medicaldispensary").html( datastream_updated["current_value"] );
+      $("#medicaldispensaryA").html( datastream_updated["current_value"] );
     });
   });
   
   xively.datastream.get (feedA, "ReceptionOffice", function (datastream) {
-    $("#receptionoffice").html( datastream["current_value"] );
+    $("#receptionofficeA").html( datastream["current_value"] );
     xively.datastream.subscribe( feedA, "ReceptionOffice", function ( event , datastream_updated ) {
-      $("#receptionoffice").html( datastream_updated["current_value"] );
+      $("#receptionofficeA").html( datastream_updated["current_value"] );
     });
   });
 
   xively.datastream.get (feedA, "SleepingQuarter", function (datastream) {
-    $("#sleepingquarter").html( datastream["current_value"] );
+    $("#sleepingquarterA").html( datastream["current_value"] );
     xively.datastream.subscribe( feedA, "SleepingQuarter", function ( event , datastream_updated ) {
-      $("#sleepingquarter").html( datastream_updated["current_value"] );
+      $("#sleepingquarterA").html( datastream_updated["current_value"] );
     });
   });
   
   // feedB
   xively.feed.get (feedB, function (data) {
-    $("#title").html( data["title"] );
+    $("#titleB").html( data["title"] );
     xively.feed.subscribe( feedB, function ( event , feed_updated ) {
-      $("#title").html( feed_updated["title"] );
+      $("#titleB").html( feed_updated["title"] );
     });
   });
   
   xively.datastream.get (feedB, "AssemblyArea", function (datastream) {
-    $("#assemblyarea").html( datastream["current_value"] );
+    $("#assemblyareaB").html( datastream["current_value"] );
     xively.datastream.subscribe( feedB, "AssemblyArea", function ( event , datastream_updated ) {
-      $("#assemblyarea").html( datastream_updated["current_value"] );
+      $("#assemblyareaB").html( datastream_updated["current_value"] );
     });
   });
   
   xively.datastream.get (feedB, "MedicalDispensary", function (datastream) {
-    $("#medicaldispensary").html( datastream["current_value"] );
+    $("#medicaldispensaryB").html( datastream["current_value"] );
     xively.datastream.subscribe( feedB, "MedicalDispensary", function ( event , datastream_updated ) {
-      $("#medicaldispensary").html( datastream_updated["current_value"] );
+      $("#medicaldispensaryB").html( datastream_updated["current_value"] );
     });
   });
   
   xively.datastream.get (feedB, "ReceptionOffice", function (datastream) {
-    $("#receptionoffice").html( datastream["current_value"] );
+    $("#receptionofficeB").html( datastream["current_value"] );
     xively.datastream.subscribe( feedB, "ReceptionOffice", function ( event , datastream_updated ) {
-      $("#receptionoffice").html( datastream_updated["current_value"] );
+      $("#receptionofficeB").html( datastream_updated["current_value"] );
     });
   });
 
   xively.datastream.get (feedB, "SleepingQuarter", function (datastream) {
-    $("#sleepingquarter").html( datastream["current_value"] );
+    $("#sleepingquarterB").html( datastream["current_value"] );
     xively.datastream.subscribe( feedB, "SleepingQuarter", function ( event , datastream_updated ) {
-      $("#sleepingquarter").html( datastream_updated["current_value"] );
+      $("#sleepingquarterB").html( datastream_updated["current_value"] );
     });
   });
   
